@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Sederhana</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+            overflow: hidden;
+            background-color: #fff0f5;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: pink;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: hotpink;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            font-size: 18px;
+            color: purple;
+        }
+
+        /* Emoji jatuh */
+        .emoji {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            animation: jatuh 3s linear forwards;
+        }
+
+        @keyframes jatuh {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Masukkan Nama Kamu</h1>
+
+    <input type="text" id="nama" placeholder="Tulis nama di sini">
+
+    <br><br>
+
+    <button onclick="tampilkanNama()">Klik cuy</button>
+
+    <div id="hasil"></div>
+
+    <script>
+        function tampilkanNama() {
+            var namaUser = document.getElementById("nama").value;
+
+            if (namaUser === "") {
+                document.getElementById("hasil").innerHTML = "Nama belum diisi!";
+            } else {
+                document.getElementById("hasil").innerHTML =
+                "Halo " + namaUser + " selamat kamu gadapet apa-apa";
+
+                hujanEmoji(); // panggil efek
+            }
+        }
+
+        function hujanEmoji() {
+            for (let i = 0; i < 30; i++) {
+                let emoji = document.createElement("div");
+                emoji.classList.add("emoji");
+                emoji.innerHTML = "🎉";
+
+                emoji.style.left = Math.random() * window.innerWidth + "px";
+                emoji.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+                document.body.appendChild(emoji);
+
+                setTimeout(() => {
+                    emoji.remove();
+                }, 5000);
+            }
+        }
+    </script>
+
+</body>
+</html>
